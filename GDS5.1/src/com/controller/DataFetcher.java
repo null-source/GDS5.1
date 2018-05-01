@@ -44,7 +44,42 @@ public class DataFetcher {
 		}
 		return resultSet;
 	}
-
+	
+	public ResultSet fetchCustomer(String email, String password) {
+		try {
+			preparedStatement = connect.prepareStatement("select c.* from Customer c where c.email = ?");
+			preparedStatement.setString(1, email);
+			resultSet = preparedStatement.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return resultSet;
+	}
+	
+	/**
+	 * Returns all data fields from the Carts table in the GDS Database
+	 * that match the specified cartId and customer email.
+	 * @param cartId A string literal representing the cart id
+	 * @param email A string literal representing the customer's email
+	 * @return ResultSet the resulset of the SQL query
+	 */
+	public ResultSet fetchCart(String cartId, String email) {
+		try {
+			preparedStatement = connect.prepareStatement("select sc.* from Carts sc where sc.cartId = ?"
+															+ "and sc.email = ?");
+			preparedStatement.setString(1, cartId);
+			preparedStatement.setString(2, email);
+			resultSet = preparedStatement.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return resultSet;
+	}
+	
+	/**
+	 * Returns all fields from the Grocery table in the GDS database.
+	 * @return ResultSet the results of the SQL query
+	 */
 	public ResultSet fetchList() {
 
 		try {
