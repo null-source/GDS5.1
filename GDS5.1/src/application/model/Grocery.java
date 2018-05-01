@@ -1,24 +1,24 @@
 package application.model;
-import java.util.Date;
+import java.sql.Date;
 
 public class Grocery {
 	
-	/** the price of the grocery item */
-	private double price;
-	/** the last date the item was updated */
-	private Date lastDt;
-	/** the description of the item */
-	private String desc;
-	/** the area the item belongs to */
-	private String area;
-	/** the name of the item */
-	private String name;
-	/** the item ID */
-	private String itemId;
-	/** the availability of the item */
-	private int quantity;
-	/** the index of the item */
-	public int index;
+	
+	private double price; /** the price of the grocery item */
+	
+	private Date lastDt; /** the last date the item was updated */
+	
+	private String desc; /** the description of the item */
+	
+	private String area; /** the area the item belongs to */
+	
+	public String name; /** the name of the item */
+	
+	private String itemId; /** the item ID */
+	
+	public int quantity; /** the availability of the item */
+	
+	public int index; /** the index of the item */
 	
 	public Grocery (String itemId, String name, String desc, double price, int quantity, Date lastDt2, String area, int index) {
 		this.itemId = itemId;

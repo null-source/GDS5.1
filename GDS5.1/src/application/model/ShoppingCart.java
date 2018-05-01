@@ -9,12 +9,9 @@ import java.util.ArrayList;
 
 public class ShoppingCart {
 	
-	/** The shopping cart ID */
-	private String cartId;
-	
-	/** An ArrayList of Grocery items */
-	private ArrayList<Grocery> cart;
-	private String status;
+	private String cartId;					//Cart ID for each ShoppingCart
+	private ArrayList<Grocery> cart;		//ArrayList containing Grocery objects
+	private String status;					//inProcess, cashedOut
 	
 	
 	/**
@@ -53,6 +50,11 @@ public class ShoppingCart {
 		return this.cart;
 	}
 	
+	public void setCart(ArrayList<Grocery> newCart) { 
+		
+		
+	}
+	
 	/**
 	 * Returns the total price this shopping cart.
 	 * @return A double value representing the total price of the cart
@@ -75,4 +77,64 @@ public class ShoppingCart {
 		return result;
 	}
 	
+	/**
+	 * Method to be used for .jsp files to display the user's Shopping Cart
+	 * to them. 
+	 * 
+	 * @return An ArrayList containing arrays with an item's name, price, 
+	 * 			and quantity. 
+	 */
+	public ArrayList<String[]> displayShoppingCart() {
+		
+		//Convert the shopping cart into Strings to be displayed
+		ArrayList<String[]> shoppingCart = new ArrayList<String[]>();
+		
+		//Create an array containing item name, price, and quantity. 
+		for (Grocery g: cart) {
+			String[] item = {g.getName(), Double.toString(g.getPrice()), Integer.toString(g.getQuantity())};
+			shoppingCart.add(item);
+		}
+		
+		return shoppingCart;
+	}
+	
+	/**
+	 * 
+	 * @param grocery
+	 * @param quantity
+	 */
+	public void removeFromShoppingCart(Grocery grocery, int quantity) {
+		int index = containsName(grocery.getName());
+		
+		//Remove the item entirely
+		if (cart.get(index).quantity <= quantity) {
+			cart.remove(index);
+		} else { //update the quantity
+			cart.get(index).setQuantity( cart.get(index).quantity - quantity);
+		}
+	}
+	
+	public void addToShoppingCart(Grocery grocery, int quantity) {
+		
+		int inCart = containsName(grocery.getName());
+		
+		//If the item is in the cart already, update the quantity
+		if (inCart >= 0) {
+			cart.get(inCart).setQuantity( cart.get(inCart).quantity + quantity);		
+		} else { //If not, add it to the cart
+			cart.add(grocery);
+		}
+	}
+	
+	private int containsName(String name) {
+		
+		for(Grocery g: cart) {
+			int counter = 0;
+			if ( name.equals(g.getName() ) ) {
+				return counter;
+			}
+			counter++;
+		}
+		return -1;
+	}
 }
