@@ -51,8 +51,7 @@ public class ShoppingCart {
 	}
 	
 	public void setCart(ArrayList<Grocery> newCart) { 
-		
-		
+		cart = newCart;
 	}
 	
 	/**
