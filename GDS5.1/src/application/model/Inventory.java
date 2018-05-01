@@ -15,7 +15,7 @@ public class Inventory {
 	public Inventory() {
 		
 		DataFetcher data = new DataFetcher();
-		ResultSet resultSet = data.fetchList();
+		ResultSet resultSet = data.fetchGroceryList();
 		
 		try {
 			while (resultSet.next()) {

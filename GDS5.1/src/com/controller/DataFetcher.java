@@ -170,7 +170,7 @@ public class DataFetcher {
 	public ResultSet fetchCart(String cartId) {
 		try {
 			preparedStatement = connect.prepareStatement("select sc.*, g.price from Carts sc, Grocery g"
-														+ " where sc.cartId = ? and sc.itemId = g.itemId");
+									+ " where sc.cartId = ? and sc.itemId = g.itemId");
 			preparedStatement.setString(1, cartId);
 			resultSet = preparedStatement.executeQuery();
 		} catch (SQLException e) {
@@ -183,11 +183,42 @@ public class DataFetcher {
 	 * Returns all fields from the Grocery table in the GDS database.
 	 * @return ResultSet the results of the SQL query
 	 */
-	public ResultSet fetchList() {
-
+	public ResultSet fetchGroceryList() {
 		try {
-			statement = connect.createStatement();
-			resultSet = statement.executeQuery("select * from Grocery");
+			preparedStatement = connect.prepareStatement("select * from Grocery");
+			resultSet = preparedStatement.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return resultSet;
+	}
+	
+	public ResultSet fetchGroceryItem(String itemId) {
+		try {
+			preparedStatement = connect.prepareStatement("select g.* from Grocery g "
+								+ "where g.itemId = ?");
+			preparedStatement.setString(1, itemId);
+			resultSet = preparedStatement.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return resultSet;
+	}
+	
+	/**
+	 * Decrements the specified Grocery quantity by 1
+	 * @param itemId A string literal representing the item ID
+	 * @return A resultSet of the query
+	 */
+	public ResultSet decrementGroceryItem(String itemId, int amount) {
+		try {
+			preparedStatement = connect.prepareStatement("Update Grocery "
+							+ " set quantity = IF(quantity >= ?, quantity - ?, quantity) "
+							+ " where itemId = ?");
+			preparedStatement.setInt(1, amount);
+			preparedStatement.setInt(2, amount);
+			preparedStatement.setString(3, itemId);
+			resultSet = preparedStatement.executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -232,8 +263,8 @@ public class DataFetcher {
 	 * @param newPrice A double value specifying the Grocery item's new price
 	 * @param newArea A string literal specifying the Grocery item's new area
 	 */
-	public void UpdateGrocery(String oldItemId, String newItemId, String newName, String newDescription, String newLastDt, 
-								int newQuantity, double newPrice, String newArea) {
+	public void UpdateGrocery(String oldItemId, String newItemId, String newName, String newDescription, 
+							String newLastDt, int newQuantity, double newPrice, String newArea) {
 		try {
 			preparedStatement = connect.prepareStatement("update Grocery "
 									+ "set itemId = ?, name = ?, description = ?, lastDt = ?, "
@@ -253,5 +284,4 @@ public class DataFetcher {
 			e.printStackTrace();
 		}
 	}
-
 }

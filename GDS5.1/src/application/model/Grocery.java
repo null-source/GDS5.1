@@ -30,7 +30,13 @@ public class Grocery {
 		this.area = area;
 		this.index = index;
 	}
+	
+	public Grocery(String itemId, String name, String desc, double price, int quantity, Date lastDt, String area) {
+		this(itemId, name, desc, price, quantity, lastDt, area, 0);
+	}
 
+	public Grocery() {
+	}
 	public double getPrice() {
 		return price;
 	}
