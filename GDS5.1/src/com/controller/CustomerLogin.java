@@ -22,7 +22,7 @@ public class CustomerLogin extends HttpServlet {
 		if (valid < 0) {
 			//invalid credentials redirect to login
 			response.sendRedirect("customerLogin.jsp");
-		}else {
+		} else {
 			///customer navigation page
 			HttpSession session = request.getSession();
 			//session.setAttribute("username", email);
