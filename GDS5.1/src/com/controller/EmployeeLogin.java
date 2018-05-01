@@ -21,12 +21,12 @@ public class EmployeeLogin extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		
 		EmpHandle ch = new EmpHandle();
 		int valid = ch.empExist(username, password);
+		
 		if (valid < 0) {
 			//This is where you will navigate to a employee view page
-			response.sendRedirect("EmployeeLogin");
+			response.sendRedirect("EmployeeLogin.jsp");
 		} else {
 			//This is where you will recurse to the login page
 			HttpSession session = request.getSession();
@@ -45,6 +45,7 @@ public class EmployeeLogin extends HttpServlet {
 				response.sendRedirect("driver.jsp");
 				break;
 			default:
+				response.sendRedirect("EmployeeLogin.jsp");
 				break;
 			}
 		}

@@ -33,44 +33,20 @@ public class DataFetcher {
 		}
 	}
 
-	public Employee fetchEmp(String username, String password) {
+	public ResultSet fetchEmp(String username, String password) {
+		
 		try {
-			Employee emp = null;
-			preparedStatement = connect.prepareStatement("select c.empPw from Customer c where c.empId = ?");
+			preparedStatement = connect.prepareStatement("select e.* from Employee e where e.empId = ?");
 			preparedStatement.setString(1, username);
 			resultSet = preparedStatement.executeQuery();
-			if (resultSet.getString("empId") == null)
-				return null;
-			else if (password.equals(resultSet.getString("empPw"))) {
-				switch (resultSet.getInt(4)) {
-				case 0:
-					emp = new Manager(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3),
-							resultSet.getInt(4));
-					return emp;
-				case 1:
-					emp = new Maintainer(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3),
-							resultSet.getInt(4));
-					return emp;
-				case 2:
-					emp = new Shopper(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3),
-							resultSet.getInt(4));
-					return emp;
-				case 3:
-					emp = new DeliveryDriver(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3),
-							resultSet.getInt(4));
-					return emp;
-				default:
-					return null;
-				}
-			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return resultSet;
 	}
 
 	public ResultSet fetchList() {
-		
+
 		try {
 			statement = connect.createStatement();
 			resultSet = statement.executeQuery("select * from Grocery");

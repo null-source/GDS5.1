@@ -1,6 +1,6 @@
 package com.controller;
 
-import application.model.Employee;
+import java.sql.ResultSet;
 
 public class EmpHandle {
 	
@@ -12,21 +12,29 @@ public class EmpHandle {
 	 */
 	public int empExist(String username, String password) {
 		DataFetcher data = new DataFetcher();
-		Employee cust = data.fetchEmp(username, password);
-		if (cust == null)
-			return -1;
-		switch(cust.getEmpType()) {
-		case 0:
-			return 0;
-		case 1:
-			return 1;
-		case 2:
-			return 2;
-		case 3:
-			return 3;
-		default:
-			break;
+		ResultSet resultSet = data.fetchEmp(username, password);
+		String rUser = null, rPass = null;
+		int value = 0;
+		
+		try {
+			resultSet.next();
+			rUser = resultSet.getString(1);
+			rPass = resultSet.getString(2);
+			
+			if (rUser.equals(username)) {
+				if (rPass.equals(password)) {
+					value = resultSet.getInt(4);
+				}
+				else {
+					value = -1;
+				}
+			} else {
+				value = -1;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		return -1;
+		
+		return value;
 	}
 }
