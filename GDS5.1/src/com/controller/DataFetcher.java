@@ -47,20 +47,45 @@ public class DataFetcher {
 	
 	/**
 	 * Inserts a new Employee into the Employee table.
-	 * @param email A string literal specifying the new Employee's email
-	 * @param password A string literal specifying the new Employees's password
+	 * @param empId A string literal specifying the new Employee's employee ID
+	 * @param empPw A string literal specifying the new Employees's password
 	 * @param name A string literal specifying the new Employee's name
 	 * @param empType A string literal specifying the new Employee's type
 	 */
-	public void insertEmployee(String email, String password, String name, int empType) {
+	public void insertEmployee(String empId, String empPw, String name, int empType) {
 		try {
 			preparedStatement = connect.prepareStatement("insert into Employee values "
 									+ "(?, ?, ?, ?)");
-			preparedStatement.setString(1, email);
-			preparedStatement.setString(2, password);
+			preparedStatement.setString(1, empId);
+			preparedStatement.setString(2, empPw);
 			preparedStatement.setString(3, name);
 			preparedStatement.setInt(4, empType);
 
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Updates an existing Employee located by employee Id. 
+	 * @param oldEmpId String literal specifying the old Id of the employee
+	 * @param newEmpId String literal specifying the new Id of the employee
+	 * @param newPassword String literal specifying the new password of the employee
+	 * @param newName String literal specifying the new name of the employee
+	 * @param newEmpType String literal specifying the new designation of the employee
+	 */
+	public void updateEmployee(String oldEmpId, String newEmpId, String newPassword, 
+								String newName, int newEmpType) {
+		try {
+			preparedStatement = connect.prepareStatement("update Employee set empId = ?, "
+									+ "passwd = ?, name = ?, empType = ? where empId = ?");
+			preparedStatement.setString(1, newEmpId);
+			preparedStatement.setString(2, newPassword);
+			preparedStatement.setString(3, newName);
+			preparedStatement.setInt(4, newEmpType);
+			preparedStatement.setString(5, oldEmpId);
+			
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -101,6 +126,31 @@ public class DataFetcher {
 			preparedStatement.setString(3, name);
 			preparedStatement.setString(4, cartId);
 
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Updates an existing Customer located in the Customer table (located by email).
+	 * @param email A string literal specifying the Customer's email
+	 * @param email A string literal specifying the new Customer's email
+	 * @param password A string literal specifying the new Customer's password
+	 * @param name A string literal specifying the new Customer's name
+	 * @param cartId A string literal specifying the new Customer's cartId
+	 */
+	public void updateCustomer(String oldEmail, String newEmail, String newPassword, 
+								String newName, String newCartId) {
+		try {
+			preparedStatement = connect.prepareStatement("update Customer set email = ?, "
+									+ "passwd = ?, name = ?, cartId = ? where email = ?");
+			preparedStatement.setString(1, newEmail);
+			preparedStatement.setString(2, newPassword);
+			preparedStatement.setString(3, newName);
+			preparedStatement.setString(4, newCartId);
+			preparedStatement.setString(5, oldEmail);
+			
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -163,6 +213,38 @@ public class DataFetcher {
 			preparedStatement.setInt(5, quantity);
 			preparedStatement.setDouble(6, price);			
 			preparedStatement.setString(7, area);
+
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Updates an existing Grocery item in the Grocery Table (located by itemId).
+	 * @param oldItemId A string literal specifying the Grocery item's current id
+	 * @param newItemId A string literal specifying the Grocery item's new id
+	 * @param newDescription A string literal specifying the Grocery item's new description
+	 * @param newLastDt A string literal specifying the Grocery item's last update
+	 * @param newQuantity An integer value specifying the Grocery item's new availability
+	 * @param newPrice A double value specifying the Grocery item's new price
+	 * @param newArea A string literal specifying the Grocery item's new area
+	 */
+	public void UpdateGrocery(String oldItemId, String newItemId, String newName, String newDescription, String newLastDt, 
+								int newQuantity, double newPrice, String newArea) {
+		try {
+			preparedStatement = connect.prepareStatement("update Grocery "
+									+ "set itemId = ?, name = ?, description = ?, lastDt = ?, "
+									+ "quantity = ?, price = ?, area = ? where itemId = ?");
+			
+			preparedStatement.setString(1, newItemId);
+			preparedStatement.setString(2, newName);
+			preparedStatement.setString(3, newDescription);
+			preparedStatement.setString(4, newLastDt);
+			preparedStatement.setInt(5, newQuantity);
+			preparedStatement.setDouble(6, newPrice);			
+			preparedStatement.setString(7, newArea);
+			preparedStatement.setString(8, oldItemId);
 
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
