@@ -14,6 +14,7 @@ public class ShoppingCart {
 	
 	/** An ArrayList of Grocery items */
 	private ArrayList<Grocery> cart;
+	private String status;
 	
 	
 	/**

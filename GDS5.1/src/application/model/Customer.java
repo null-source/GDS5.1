@@ -1,9 +1,15 @@
 package application.model;
 
+import java.util.*;
+
 public class Customer {
+	
 	private String email;
 	private String fullname;
 	private String password;
+	private ShoppingCart cart;
+	private Order currentOrder;
+	private ArrayList<String> pastOrders;
 	
 	public Customer(String email, String fullname, String password) {
 		this.email = email;
