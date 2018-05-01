@@ -32,6 +32,7 @@ p {
 <body>
 	<a href="Main.jsp">HOME</a>
 	<center>
+		<form action="CustomerLogin" method="POST">
 		<h1>Login</h1>
 		<table>
 			<tr>
@@ -45,14 +46,12 @@ p {
 			<tr>
 				<td><input type="submit" value="Login"></td>
 			</tr>
-
 		</table>
+		</form>
 		<hr width=210>
 		<p>
 			New to the grocery delivery system? <br> <a href="register.jsp">Register</a>
 		</p>
-
 	</center>
-
 </body>
 </html>
