@@ -5,8 +5,7 @@
 <head>
 <style>
 body {
-	background-color: linen;
-	font-family: "helvetica";
+	background-color: "white"";
 }
 
 td {
@@ -14,23 +13,32 @@ td {
 	vertical-align: middle;
 }
 
-a {
-	font-size: 12px;
-	text-align: center;
-	vertical-align: middle;
+.topnav {
+	overflow: hidden;
+	background-color: #133251;
 }
 
-p {
-	font-size: 12px;
+.topnav a {
+	float: left;
+	color: white;
 	text-align: center;
-	vertical-align: middle;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 14px;
+}
+
+.topnav a:hover {
+	background-color: #ddd;
+	color: black;
 }
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login</title>
 </head>
 <body>
-	<a href="Main.jsp">HOME</a>
+	<div class="topnav">
+		<a class="active" href="Main.jsp">Home</a> 
+	</div>
 	<center>
 		<form action="CustomerLogin" method="POST">
 		<h1>Login</h1>
