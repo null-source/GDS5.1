@@ -1,9 +1,9 @@
 package com.controller;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 
 import application.model.Grocery;
 
@@ -12,6 +12,7 @@ public class ItemHandler {
 	/** used to store the results of database queries */
 	private ResultSet resultSet;
 	
+	/** fetches the data from the GDS database */
 	private DataFetcher data;
 	
 	/**
@@ -40,6 +41,24 @@ public class ItemHandler {
 					inventory.size()));
 		}
 		return inventory;
+	}
+	
+	/**
+	 * Updates an existing item in the GDS database.
+	 * @param oldItemId A string literal representing the item's old Id
+	 * @param newItemId A string literal specifying the item's new Id
+	 * @param newName A string literal specifying the item's new name
+	 * @param newDescription A string literal specifying the item's new description
+	 * @param newLastDt A SQL date object specifying the item's new date
+	 * @param newQuantity An integer value specifying the item's new quantity
+	 * @param newPrice Double value specifying the item's new price
+	 * @param newArea String literal specifying the item's new area
+	 */
+	public void updateItem(String oldItemId, String newItemId, String newName, String newDescription, 
+							Date newLastDt, int newQuantity, double newPrice, String newArea) {
+		
+		data.updateGrocery(oldItemId, newItemId, newName, newDescription, newLastDt, 
+							newQuantity, newPrice, newArea);
 	}
 	
 	/** Returns the specified Grocery item from the database, and decrements 

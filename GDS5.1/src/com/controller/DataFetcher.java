@@ -6,10 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import application.model.*;
-import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 
 public class DataFetcher {
 
@@ -263,8 +260,8 @@ public class DataFetcher {
 	 * @param newPrice A double value specifying the Grocery item's new price
 	 * @param newArea A string literal specifying the Grocery item's new area
 	 */
-	public void UpdateGrocery(String oldItemId, String newItemId, String newName, String newDescription, 
-							String newLastDt, int newQuantity, double newPrice, String newArea) {
+	public void updateGrocery(String oldItemId, String newItemId, String newName, String newDescription,
+						Date newLastDt, int newQuantity, double newPrice, String newArea) {
 		try {
 			preparedStatement = connect.prepareStatement("update Grocery "
 									+ "set itemId = ?, name = ?, description = ?, lastDt = ?, "
@@ -273,7 +270,7 @@ public class DataFetcher {
 			preparedStatement.setString(1, newItemId);
 			preparedStatement.setString(2, newName);
 			preparedStatement.setString(3, newDescription);
-			preparedStatement.setString(4, newLastDt);
+			preparedStatement.setDate(4, newLastDt);
 			preparedStatement.setInt(5, newQuantity);
 			preparedStatement.setDouble(6, newPrice);			
 			preparedStatement.setString(7, newArea);
