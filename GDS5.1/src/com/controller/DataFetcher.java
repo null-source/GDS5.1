@@ -101,8 +101,10 @@ public class DataFetcher {
 	 */
 	public ResultSet fetchCustomer(String email, String password) {
 		try {
-			preparedStatement = connect.prepareStatement("select c.* from Customer c where c.email = ?");
+			preparedStatement = connect.prepareStatement("select c.* from Customer c where c.email = ? "
+														+ " and passwd = ?");
 			preparedStatement.setString(1, email);
+			preparedStatement.setString(2, password);
 			resultSet = preparedStatement.executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();

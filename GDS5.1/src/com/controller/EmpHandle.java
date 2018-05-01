@@ -40,8 +40,7 @@ public class EmpHandle {
 		//Local variables for login testing
 		DataFetcher data = new DataFetcher();
 		String rUser = null, rPass = null; //buffers for data from the database
-		int value = 0; //return value
-		ResultSet resultSet = null;
+		int value = -2; //return value
 		
 		if(type == 0) {
 			resultSet = data.fetchEmp(username, password);
