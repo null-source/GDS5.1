@@ -5,7 +5,7 @@
 <head>
 <style>
 body {
-	background-color: linen;
+	background-color: white;
 	font-family: "helvetica";
 }
 
@@ -13,29 +13,48 @@ td {
 	text-align: center;
 	vertical-align: middle;
 }
+
+.topnav {
+	overflow: hidden;
+	background-color: #133251;
+}
+
+.topnav a {
+	float: left;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 14px;
+}
+
+.topnav a:hover {
+	background-color: #ddd;
+	color: black;
+}
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Register</title>
 </head>
 <body>
-	<a href="Main.jsp">HOME</a>
+	<div class="topnav">
+		<a class="active" href="Main.jsp">Home</a> 
+	</div>
 	<center>
 		<h1>Create a new account</h1>
 		<table>
 			<tr>
-				<td>Full Name<br>
-				<input type="text" name="customersName"></td>
+				<td>Full Name<br> <input type="text" name="customersName"></td>
 			</tr>
 			<tr>
-				<td>Email<br>
-				<input type="text" name="customersEmail"></td>
+				<td>Email<br> <input type="text" name="customersEmail"></td>
 			</tr>
 			<tr>
-				<td>Password<br>
-				<input type="password" name="customersPassword"></td>
+				<td>Password<br> <input type="password"
+					name="customersPassword"></td>
 			</tr>
 			<tr>
-				<td><input type="submit" value="Register"></td>
+				<td><br><input type="submit" value="Register"></td>
 			</tr>
 
 		</table>
