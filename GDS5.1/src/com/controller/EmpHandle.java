@@ -14,6 +14,8 @@ import java.sql.ResultSet;
  */
 public class EmpHandle {
 	
+	private ResultSet resultSet = null;
+	
 	/**
 	 * 
 	 * empExist() processes raw data fetched from the database and 
@@ -22,6 +24,8 @@ public class EmpHandle {
 	 * 
 	 * @param username of potential employee ID
 	 * @param password of potential employee ID
+	 * @param type Integer value used to determine if an employee or customer
+	 * 		  data should be fetched (0 == Employee, Everything else == Customer)
 	 * @return
 	 * 
 	 * 		-2 if the Employee ID does not exist
@@ -31,13 +35,19 @@ public class EmpHandle {
 	 * 		2 if the Employee exists and is of type "Shopper"
 	 * 		3 if the Employee exists and is of type "Driver"
 	 */
-	public int empExist(String username, String password) {
+	public int empExist(String username, String password, int type) {
 		
 		//Local variables for login testing
 		DataFetcher data = new DataFetcher();
-		ResultSet resultSet = data.fetchEmp(username, password);
 		String rUser = null, rPass = null; //buffers for data from the database
 		int value = 0; //return value
+		ResultSet resultSet = null;
+		
+		if(type == 0) {
+			resultSet = data.fetchEmp(username, password);
+		}else {
+			resultSet = data.fetchCustomer(username, password);
+		}
 		
 		// Main testing for database information processing
 		try {
@@ -59,8 +69,11 @@ public class EmpHandle {
 				 * set to the Employee type if the credentials are valid
 				 */
 				if (rPass.equals(password)) {
-					
-					value = resultSet.getInt(4);	//Employee type
+					if (type == 0) {
+						value = resultSet.getInt(4);	//Employee type
+					}else {
+						value = 0;   //Customer return value (Shane: 0 in the event I break the employee login)
+		 			}
 				}
 				else {
 					value = -1; //Invalid Credentials

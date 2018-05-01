@@ -14,7 +14,8 @@ public class CustomerLogin extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("customersEmail");
 		String password = request.getParameter("customersPassword");
-		
+		EmpHandle ch = new EmpHandle();
+		int valid = ch.empExist(email, password, 1);
 		
 	}
 

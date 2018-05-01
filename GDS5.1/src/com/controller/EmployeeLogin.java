@@ -22,7 +22,7 @@ public class EmployeeLogin extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		EmpHandle ch = new EmpHandle();
-		int valid = ch.empExist(username, password);
+		int valid = ch.empExist(username, password, 0);
 		
 		if (valid < 0) {
 			//This is where you will navigate to a employee view page
