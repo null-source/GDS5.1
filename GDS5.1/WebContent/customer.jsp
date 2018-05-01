@@ -15,7 +15,9 @@ body {
 <body>
 	Customer
 	<div style="position: absolute; bottom: 5px; background-color: linen">
-		<button type="button" name="logout" onclick="history.back()">logout</button>
+		<form action="Logout" method="post">
+			<button name="Logout" type="submit">Logout</button>
+		</form>
 	</div>
 </body>
 </html>

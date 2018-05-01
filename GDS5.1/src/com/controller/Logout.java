@@ -16,11 +16,10 @@ public class Logout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("EmployeeLogin.jsp");
-//		HttpSession session = request.getSession();
-//		session.removeAttribute("username");
-//		session.invalidate();
-//		response.sendRedirect("EmployeeLogin.jsp");
+		HttpSession session = request.getSession();
+		session.removeAttribute("username");
+		session.invalidate();
+		response.sendRedirect("Main.jsp");
 	}
 
 	/**
