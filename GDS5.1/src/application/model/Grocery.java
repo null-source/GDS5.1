@@ -3,13 +3,21 @@ import java.util.Date;
 
 public class Grocery {
 	
-	public double price;
-	public Date lastDt;
-	public String desc;
-	public String area;
-	public String name;
-	public String itemId;
-	public int quantity;
+	/** the price of the grocery item */
+	private double price;
+	/** the last date the item was updated */
+	private Date lastDt;
+	/** the description of the item */
+	private String desc;
+	/** the area the item belongs to */
+	private String area;
+	/** the name of the item */
+	private String name;
+	/** the item ID */
+	private String itemId;
+	/** the availability of the item */
+	private int quantity;
+	/** the index of the item */
 	public int index;
 	
 	public Grocery (String itemId, String name, String desc, double price, int quantity, Date lastDt2, String area, int index) {

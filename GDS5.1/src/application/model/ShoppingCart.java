@@ -53,6 +53,26 @@ public class ShoppingCart {
 		return this.cart;
 	}
 	
+	/**
+	 * Returns the total price this shopping cart.
+	 * @return A double value representing the total price of the cart
+	 */
+	public double getTotal() {
+		double price = 0;
+		for(Grocery current: this.cart)
+			price += current.getPrice();
+		return price;
+	}
 	
+	/**
+	 * Returns a string representations of this ShoppingCart
+	 * @return A string literal value
+	 */
+	public String toString() {
+		String result = this.cartId + ":\n";
+		for(Grocery current: this.cart)
+			result += current.toString() + "\n";
+		return result;
+	}
 	
 }
