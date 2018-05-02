@@ -4,7 +4,7 @@ import java.util.*;
 public class Order {
 
 	private String status;				//placed, gathered, completed
-	private String customerName; 		    //shopping cart will be within customer
+	private String customerName; 		//shopping cart will be within customer
 	private String orderId;				//orderId...
 	private ArrayList<Grocery> items;	//items in the order
 	

@@ -1,11 +1,10 @@
 package application.model;
 
-import java.sql.ResultSet;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
-import application.model.Inventory;
-import com.controller.DataFetcher;
+import application.model.Grocery;
+import com.controller.ItemHandler;
 
 public class Maintainer extends Employee {
 
@@ -14,16 +13,18 @@ public class Maintainer extends Employee {
 	}
 
 	// Returns a string version of the grocery list
-	public ArrayList<String> retrieveGroceryTable() {
-		ArrayList<String> groceryTable = new ArrayList<String>();
-		Inventory inventory = new Inventory();
-		ArrayList<Grocery> groceries = inventory.getInventory();
-		for (int i = 0; i < groceries.size(); i++) {
-			groceryTable.add(groceries.get(i).toString());
-			
+	public ArrayList<Grocery> retrieveGroceryTable() {
+
+		ArrayList<Grocery> items = null;
+		ItemHandler IH = new ItemHandler();
+		
+		try {
+			items = IH.getInventory();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		
-		return groceryTable;
+		return items;
 		
 	}
 }
