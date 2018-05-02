@@ -115,7 +115,7 @@ public class Handle {
 		Customer cust = null;
 		try {
 			rSet.next();
-			cust = new Customer(rSet.getString(1), rSet.getString(2), rSet.getString(3));
+			cust = new Customer(rSet.getString(1),rSet.getString(3), rSet.getString(2));
 			cust.setCartId(rSet.getString(4));
 			cust.setDeliveryInfo(rSet.getString(5));
 		} catch (SQLException e) {

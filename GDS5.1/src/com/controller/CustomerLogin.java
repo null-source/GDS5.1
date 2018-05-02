@@ -25,7 +25,7 @@ public class CustomerLogin extends HttpServlet {
 		} else {
 			///customer navigation page
 			HttpSession session = request.getSession();
-			session.setAttribute("customer", ch.getCustomer(email, password));
+			session.setAttribute("user", ch.getCustomer(email, password));
 			response.sendRedirect("customer.jsp");
 		}
 	}

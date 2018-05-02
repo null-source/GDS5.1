@@ -8,19 +8,6 @@ public class Customer {
 	private String fullname;
 	private String password;
 	private String cartId;
-	public String getCartId() {
-		return cartId;
-	}
-
-	public void setCartId(String cartId) {
-		this.cartId = cartId;
-	}
-
-	private ArrayList<Grocery> cart;
-	private Order currentOrder;
-	private String paymentInfo;
-	private String deliveryInfo;
-	
 	/**
 	 * Create a new customer object by registering for an account. 
 	 * @param email			Customer's email
@@ -90,6 +77,19 @@ public class Customer {
 	public void setDeliveryInfo(String deliveryInfo) {
 		this.deliveryInfo = deliveryInfo;
 	}
+	public String getCartId() {
+		return cartId;
+	}
+
+	public void setCartId(String cartId) {
+		this.cartId = cartId;
+	}
+
+	private ArrayList<Grocery> cart;
+	private Order currentOrder;
+	private String paymentInfo;
+	private String deliveryInfo;
+	
 	
 	/**
 	 * Returns the total price this shopping cart.
