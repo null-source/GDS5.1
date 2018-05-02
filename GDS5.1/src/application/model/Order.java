@@ -13,6 +13,12 @@ public class Order {
 		this.customerName = customer;
 		
 	}
+	
+	public Order(ArrayList<Grocery> cart, String customer, String orderId) {
+		this.items = cart;
+		this.customerName = customer;
+		this.orderId = orderId;
+	}
 
 	public String getStatus() {
 		return status;
@@ -45,5 +51,11 @@ public class Order {
 
 	public void setItems(ArrayList<Grocery> items) {
 		this.items = items;
+	}
+	
+	public String toString() {
+		String orderString = this.orderId + " " + this.customerName + " " + this.items;
+		return orderString;
+		
 	}
 }
