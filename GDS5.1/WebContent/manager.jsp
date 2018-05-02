@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1" import="java.util.ArrayList" import="com.controller.ItemHandler" import="application.model.Grocery"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <style>
@@ -96,7 +96,7 @@ td {
 %>
 
 	<div class="topnav">
-		<a class="active" href="manager.jsp">Home</a> <a class="active"
+		<a class="active" href="Main.jsp">Home</a> <a class="active"
 			href="#orders">Orders</a> <a class="active" href="#inventory">Inventory</a>
 		<a class="active" href="viewFiscInfo.jsp">Financial Information</a> <a
 			class="active" href="employeeManagement.jsp">Employee Management</a>
@@ -161,9 +161,21 @@ td {
 						</tr>
 					</thead>
 					<tbody>
+						<%
+							ItemHandler cItem = new ItemHandler();
+							ArrayList<Grocery> grocList = cItem.getInventory();
+							
+							
+							for (Grocery g: grocList) {
+						%>
+
 						<tr>
-							<td>1234</td>
-							<td>Golden Apple</td>
+							<td><%=g.toString()%></td>
+						</tr>
+
+						<%
+							}
+						%>
 					</tbody>
 				</table>
 			</div>

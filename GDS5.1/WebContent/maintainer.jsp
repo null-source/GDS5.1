@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1" import="java.util.ArrayList" import="com.controller.ItemHandler" import="application.model.Grocery"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -94,12 +94,11 @@ td {
 
 %>
 	<div class="topnav">
-		<a class="active" href="maintainer.jsp">Home</a> <a class="active"
+		<a class="active" href="Main.jsp">Home</a> <a class="active"
 			href="#inventory">Inventory</a><a class="active" href="#alerts">Alerts</a>
 		<a class="active" id="clock"
 			onclick="getElementById('clock').innerHTML=Date()">Clock in/out</a> <a
-			class="active" href="viewFiscInfo.jsp"> <a class="emp"
-			href="Main.jsp">Logout</a>
+			class="active" href="viewFiscInfo.jsp"> 
 	</div>
 	<center>
 		<h1>
@@ -180,24 +179,36 @@ td {
 			value="SEARCH">
 		<div id="table-wrapper">
 			<div id="table-scroll">
-				<br>
 				<table>
 					<thead>
 						<tr>
-							<th><span class="Price">Product ID</span></th>
-							<th><span class="Item">Description</span></th>
+							<th><span class="Price">Item</span></th>
 						</tr>
 					</thead>
 					<tbody>
+						<%
+							ItemHandler cItem = new ItemHandler();
+							ArrayList<Grocery> grocList = cItem.getInventory();
+							
+							
+							for (Grocery g: grocList) {
+						%>
+
 						<tr>
-							<td>1234</td>
-							<td>Golden Apple</td>
+							<td><%=g.toString()%></td>
+						</tr>
+
+						<%
+							}
+						%>
 					</tbody>
 				</table>
 			</div>
 		</div>
 		<br>
 	</div>
-
+<form action="Logout" method="post">
+<input type="submit" value="Logout">
+</form>
 </body>
 </html>

@@ -22,6 +22,7 @@ public class EmployeeLogin extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		Handle ch = new Handle();
+		String type = null;
 		int valid = ch.userExist(username, password, 0);
 		
 		if (valid < 0) {
@@ -33,15 +34,23 @@ public class EmployeeLogin extends HttpServlet {
 			session.setAttribute("user", ch.getEmployee(username, password));
 			switch(valid) {
 			case 0:
+				type = "Manager";
+				session.setAttribute("type", type);
 				response.sendRedirect("manager.jsp");
 				break;	
 			case 1:
+				type = "Maintainer";
+				session.setAttribute("type", type);
 				response.sendRedirect("maintainer.jsp");
 				break;
 			case 2:
+				type = "Shopper";
+				session.setAttribute("type", type);
 				response.sendRedirect("shopper.jsp");
 				break;
 			case 3:
+				type = "Driver";
+				session.setAttribute("type", type);
 				response.sendRedirect("driver.jsp");
 				break;
 			default:

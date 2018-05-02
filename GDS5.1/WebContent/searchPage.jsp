@@ -33,7 +33,7 @@ body {
 	top: -20px;
 	z-index: 2;
 	height: 20px;
-	width: 35%;
+	width: 50%;
 	border: 1px solid black;
 }
 

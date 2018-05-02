@@ -38,19 +38,24 @@ td {
 </head>
 <body>
 <%
-	Employee e = (Employee) session.getAttribute("user");
-	if (e != null) {
-		switch(e.getEmpType()) {
-		case 0:
-			response.sendRedirect("manager.jsp");
-		case 1:
-			response.sendRedirect("maintainer.jsp");
-		case 2:
-			response.sendRedirect("shopper.jsp");
-		case 3:
-			response.sendRedirect("driver.jsp");
-		}
+String type = (String) session.getAttribute("type");
+
+if (type != null) {
+	switch(type) {
+	case "Manager":
+		response.sendRedirect("manager.jsp");
+		break;
+	case "Maintainer":
+		response.sendRedirect("maintainer.jsp");
+		break;
+	case "Shopper":
+		response.sendRedirect("shopper.jsp");
+		break;
+	case "Driver":
+		response.sendRedirect("driver.jsp");
+		break;
 	}
+} 
 %>
 	<div class="topnav">
 		<a class="active" href="Main.jsp">Home</a>
