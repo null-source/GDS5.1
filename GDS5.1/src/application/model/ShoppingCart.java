@@ -9,9 +9,9 @@ import java.util.ArrayList;
 
 public class ShoppingCart {
 	
-	private String cartId;					//Cart ID for each ShoppingCart
+	private static String cartId;					//Cart ID for each ShoppingCart
 	private ArrayList<Grocery> cart;		//ArrayList containing Grocery objects
-	private String status;					//inProcess, cashedOut
+	private String status;					//inProcess, paid
 	
 	
 	/**
@@ -20,8 +20,8 @@ public class ShoppingCart {
 	 * @param cartId A shopping cart ID
 	 * @param cart An ArrayList of Grocery ITems
 	 */
-	public ShoppingCart(String cartId, ArrayList<Grocery> cart) {
-		this.cartId = cartId;
+	public ShoppingCart(ArrayList<Grocery> cart) {
+		this.status = "inProcess";
 		this.cart = cart;
 	}
 	
@@ -31,7 +31,7 @@ public class ShoppingCart {
 	 * @param cart An ArrayList of Grocery ITems
 	 */
 	public ShoppingCart(String cartId) {
-		this(cartId, new ArrayList<Grocery>());
+		this.cart = getCart(cartId);
 	}
 	
 	/**
@@ -54,16 +54,7 @@ public class ShoppingCart {
 		cart = newCart;
 	}
 	
-	/**
-	 * Returns the total price this shopping cart.
-	 * @return A double value representing the total price of the cart
-	 */
-	public double getTotal() {
-		double price = 0;
-		for(Grocery current: this.cart)
-			price += current.getPrice();
-		return price;
-	}
+
 	
 	/**
 	 * Returns a string representations of this ShoppingCart
@@ -102,16 +93,7 @@ public class ShoppingCart {
 	 * @param grocery
 	 * @param quantity
 	 */
-	public void removeFromShoppingCart(Grocery grocery, int quantity) {
-		int index = containsName(grocery.getName());
-		
-		//Remove the item entirely
-		if (cart.get(index).quantity <= quantity) {
-			cart.remove(index);
-		} else { //update the quantity
-			cart.get(index).setQuantity( cart.get(index).quantity - quantity);
-		}
-	}
+
 	
 	public void addToShoppingCart(Grocery grocery, int quantity) {
 		
