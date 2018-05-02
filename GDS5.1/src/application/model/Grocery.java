@@ -104,9 +104,10 @@ public class Grocery {
 	}
 	
 	public String toString() {
-		String retString = this.itemId + " " + this.name + " " + 
+		/*String retString = this.itemId + " " + this.name + " " + 
 						   this.desc + " " + this.price + " " + this.quantity + " " +
-						   this.lastDt + " " + this.area;
+						   this.lastDt + " " + this.area; */
+		String retString = String.format("%s $%.2f", this.name, this.price);
 		
 		return retString;
 	}
