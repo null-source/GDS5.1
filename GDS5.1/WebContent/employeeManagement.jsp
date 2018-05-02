@@ -68,26 +68,53 @@ body {
 	</center>
 
 	<center>
-	<div id="table-wrapper">
-		<div id="table-scroll">
-			<br>
-			<table>
-				<thead>
-					<tr>
-						<th><span class="Price">Employee Name</span></th>
-						<th><span class="Price">ID</span></th>
-						<th><span class="Item">Type</span></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Daniel Ghazvini</td>
-						<td>a004</td>
-						<td>0</td>
-				</tbody>
-			</table>
+		<div id="table-wrapper">
+			<div id="table-scroll">
+				<br>
+				<table>
+					<thead>
+						<tr>
+							<th><span class="Price">Employee Name</span></th>
+							<th><span class="Price">ID</span></th>
+							<th><span class="Item">Type</span></th>
+						</tr>
+					</thead>
+					<tbody>
+					<!-- Placeholder testing -->
+						<tr>
+							<td>Brenda Trejo</td>
+							<td>a001</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<td>Shane Bogard</td>
+							<td>a002</td>
+							<td>2</td>
+						</tr>
+						<tr>
+							<td>Jordan McCarthy</td>
+							<td>a003</td>
+							<td>3</td>
+						</tr>
+						<tr>
+							<td>Daniel Ghazvini</td>
+							<td>a004</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Stephanie Callahan</td>
+							<td>a005</td>
+							<td>2</td>
+						</tr>
+						<tr>
+							<td>Clarence Bumanglag</td>
+							<td>a006</td>
+							<td>0</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
-	</div>
 	</center>
 
 </body>
