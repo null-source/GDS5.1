@@ -180,6 +180,26 @@ public class DataFetcher {
 	}
 	
 	/**
+	 * Returns a specified item from a shopping cart.
+	 * @param cartId String literal specifying the cart Id
+	 * @param itemId String literal spedcifying the itemID
+	 * @return resultSet A resultSet of the SQL query
+	 */
+	public ResultSet fetchCartItem(String cartId, String itemId) {
+		try {
+			preparedStatement = connect.prepareStatement("select sc.*, g.price from Carts sc, Grocery g "
+									+ "where sc.cartId = ? and sc.itemId = ? "
+									+ "sc.itemId = g.itemId");
+			preparedStatement.setString(1, cartId);
+			preparedStatement.setString(2, itemId);
+			resultSet = preparedStatement.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return resultSet;
+	}
+	
+	/**
 	 * Inserts a new cart item into the GDS database.
 	 * @param cartId A string literal specifying the new cartId
 	 * @param email A string literal specifying the email address
@@ -200,6 +220,24 @@ public class DataFetcher {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Removes an item from a specified cart.
+	 * @param cartId String literal specifying the cart to remove from
+	 * @param itemId String literal specifying the item to remove from the cart
+	 */
+	public void removeCartItem(String cartId, String itemId) {
+		try {
+			preparedStatement = connect.prepareStatement("delete from Carts "
+						+ "cartId = ? and itemId = ?");
+			preparedStatement.setString(1, cartId);
+			preparedStatement.setString(2,  itemId);
+
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+}
 	
 	/**
 	 * Returns all fields from the Grocery table in the GDS database.
