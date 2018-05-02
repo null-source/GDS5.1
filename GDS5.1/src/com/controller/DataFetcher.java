@@ -54,7 +54,7 @@ public class DataFetcher {
 	 */
 	public void insertEmployee(String empId, String empPw, String name, int empType) {
 		try {
-			preparedStatement = connect.prepareStatement("insert into Employee values "
+			preparedStatement = connect.prepareStatement("insert into gds3.Employee values "
 									+ "(?, ?, ?, ?)");
 			preparedStatement.setString(1, empId);
 			preparedStatement.setString(2, empPw);
@@ -78,7 +78,7 @@ public class DataFetcher {
 	public void updateEmployee(String oldEmpId, String newEmpId, String newPassword, 
 								String newName, int newEmpType) {
 		try {
-			preparedStatement = connect.prepareStatement("update Employee set empId = ?, "
+			preparedStatement = connect.prepareStatement("update gds3.Employee set empId = ?, "
 									+ "passwd = ?, name = ?, empType = ? where empId = ?");
 			preparedStatement.setString(1, newEmpId);
 			preparedStatement.setString(2, newPassword);
@@ -146,7 +146,7 @@ public class DataFetcher {
 	public void updateCustomer(String oldEmail, String newEmail, String newPassword, 
 								String newName, String newCartId, String newAddress) {
 		try {
-			preparedStatement = connect.prepareStatement("update Customer set email = ?, "
+			preparedStatement = connect.prepareStatement("update gds3.Customer set email = ?, "
 									+ "passwd = ?, name = ?, cartId = ?, address = ? where email = ?");
 			preparedStatement.setString(1, newEmail);
 			preparedStatement.setString(2, newPassword);
@@ -209,7 +209,7 @@ public class DataFetcher {
 	 */
 	public void insertCart(String cartId, String email, String itemId, int quantity) {
 		try {
-			preparedStatement = connect.prepareStatement("insert into Carts values "
+			preparedStatement = connect.prepareStatement("insert into gds3.Carts values "
 									+ "(?, ?, ?, ?)");
 			preparedStatement.setString(1, cartId);
 			preparedStatement.setString(2, email);
@@ -229,7 +229,7 @@ public class DataFetcher {
 	 */
 	public void removeCartItem(String cartId, String itemId) {
 		try {
-			preparedStatement = connect.prepareStatement("delete from Carts "
+			preparedStatement = connect.prepareStatement("delete from gds3.Carts "
 						+ "cartId = ? and itemId = ?");
 			preparedStatement.setString(1, cartId);
 			preparedStatement.setString(2,  itemId);
@@ -273,7 +273,7 @@ public class DataFetcher {
 	 */
 	public ResultSet decrementGroceryItem(String itemId, int amount) {
 		try {
-			preparedStatement = connect.prepareStatement("Update Grocery "
+			preparedStatement = connect.prepareStatement("Update gds3.Grocery "
 							+ " set quantity = IF(quantity >= ?, quantity - ?, quantity) "
 							+ " where itemId = ?");
 			preparedStatement.setInt(1, amount);
@@ -298,7 +298,7 @@ public class DataFetcher {
 	public void insertGrocery(String itemId, String name, String description, String lastDt, 
 								int quantity, double price, String area) {
 		try {
-			preparedStatement = connect.prepareStatement("insert into Grocery values "
+			preparedStatement = connect.prepareStatement("insert into gds3.Grocery values "
 									+ "(?, ?, ?, ?, ?, ?, ?)");
 			preparedStatement.setString(1, itemId);
 			preparedStatement.setString(2, name);
@@ -327,7 +327,7 @@ public class DataFetcher {
 	public void updateGrocery(String oldItemId, String newItemId, String newName, String newDescription,
 						Date newLastDt, int newQuantity, double newPrice, String newArea) {
 		try {
-			preparedStatement = connect.prepareStatement("update Grocery "
+			preparedStatement = connect.prepareStatement("gds3.update Grocery "
 									+ "set itemId = ?, name = ?, description = ?, lastDt = ?, "
 									+ "quantity = ?, price = ?, area = ? where itemId = ?");
 			
