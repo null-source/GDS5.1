@@ -345,4 +345,21 @@ public class DataFetcher {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * 
+	 * @return ResultSet 
+	 */
+	public ResultSet fetchOrders(String status) {
+		try {
+			preparedStatement = connect.prepareStatement("select o.orderId, c.name, o.cartId "
+							+ "from Orders o, Customer c where o.status = ? and "
+							+ "o.email = c.email");
+			preparedStatement.setString(1, status);
+			resultSet = preparedStatement.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return resultSet;
+	}
 }
