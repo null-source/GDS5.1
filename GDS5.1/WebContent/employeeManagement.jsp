@@ -80,7 +80,7 @@ body {
 						</tr>
 					</thead>
 					<tbody>
-					<!-- Placeholder testing -->
+					<!-- Placeholder testing. -->
 						<tr>
 							<td>Brenda Trejo</td>
 							<td>a001</td>
