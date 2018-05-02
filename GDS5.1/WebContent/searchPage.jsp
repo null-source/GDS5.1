@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.ArrayList" import="com.controller.ItemHandler" import="application.model.Grocery"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -115,65 +115,25 @@ div.c {
 				<table>
 					<thead>
 						<tr>
-							<th><span class="Price">Price</span></th>
-							<th><span class="Item">Item</span></th>
+							<th><span class="Price">Item</span></th>
 						</tr>
 					</thead>
 					<tbody>
+						<%
+							ItemHandler cItem = new ItemHandler();
+							ArrayList<Grocery> grocList = cItem.getInventory();
+							
+							
+							for (Grocery g: grocList) {
+						%>
+
 						<tr>
-							<td>29.99</td>
-							<td>Golden Apple</td>
-						<tr>
-							<td>.99</td>
-							<td>Red Apple</td>
-						<tr>
-							<td>5.99</td>
-							<td>Lettuce</td>
-						<tr>
-							<td>5.99</td>
-							<td>Milk</td>
-						<tr>
-							<td>5.99</td>
-							<td>Water</td>
-						<tr>
-							<td>5.99</td>
-							<td>Bread</td>
-						<tr>
-							<td>5.99</td>
-							<td>Ham</td>
-						<tr>
-							<td>5.99</td>
-							<td>Bagel</td>
-						<tr>
-							<td>5.99</td>
-							<td>Mayo</td>
-						<tr>
-							<td>12.99</td>
-							<td>Coffee</td>
-						<tr>
-							<td>5.99</td>
-							<td>Creamer</td>
-						<tr>
-							<td>5.99</td>
-							<td>Goat cheese</td>
-						<tr>
-							<td>5.99</td>
-							<td>Pizza</td>
-						<tr>
-							<td>5.99</td>
-							<td>Yogurt</td>
-						<tr>
-							<td>29.99</td>
-							<td>Golden Apple</td>
-						<tr>
-							<td>29.99</td>
-							<td>Golden Apple</td>
-						<tr>
-							<td>29.99</td>
-							<td>Golden Apple</td>
-						<tr>
-							<td>29.99</td>
-							<td>Golden Apple</td>
+							<td><%=g.toString()%></td>
+						</tr>
+
+						<%
+							}
+						%>
 					</tbody>
 				</table>
 			</div>
@@ -181,6 +141,9 @@ div.c {
 		<div class="c">
 			<input type="submit" value="Add to cart">
 		</div>
+
+
+
 
 	</center>
 </body>
