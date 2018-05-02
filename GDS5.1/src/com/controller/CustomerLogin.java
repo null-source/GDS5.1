@@ -15,8 +15,8 @@ public class CustomerLogin extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("customersEmail");
 		String password = request.getParameter("customersPassword");
-		EmpHandle ch = new EmpHandle();
-		int valid = ch.empExist(email, password, 1); //1 used to indicate customer type (should work with anything but 0)
+		Handle ch = new Handle();
+		int valid = ch.userExist(email, password, 1); //1 used to indicate customer type (should work with anything but 0)
 		
 		
 		if (valid < 0) {

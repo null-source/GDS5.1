@@ -12,7 +12,7 @@ import java.sql.ResultSet;
  * @author Clarence Bumanglag
  *
  */
-public class EmpHandle {
+public class Handle {
 	
 	private ResultSet resultSet = null;
 	
@@ -30,12 +30,12 @@ public class EmpHandle {
 	 * 
 	 * 		-2 if the Employee ID does not exist
 	 * 		-1 if the Employee ID was found, but the password was incorrect
-	 * 		0 if the Employee exists and is of type "Manager"
+	 * 		0 if the Employee exists and is of type "Manager", or if the Customer exists
 	 * 		1 if the Employee exists and is of type "Maintainer"
 	 * 		2 if the Employee exists and is of type "Shopper"
 	 * 		3 if the Employee exists and is of type "Driver"
 	 */
-	public int empExist(String username, String password, int type) {
+	public int userExist(String username, String password, int type) {
 		
 		//Local variables for login testing
 		DataFetcher data = new DataFetcher();
