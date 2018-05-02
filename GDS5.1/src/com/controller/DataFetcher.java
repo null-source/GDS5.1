@@ -116,7 +116,7 @@ public class DataFetcher {
 	 * @param name A string literal specifying the new Customer's name
 	 * @param cartId A string literal specifying the new Customer's cartId
 	 */
-	public void insertCustomer(String email, String password, String name, String cartId) {
+	public void insertCustomer(String email, String password, String name, String cartId, String address) {
 		try {
 			preparedStatement = connect.prepareStatement("insert into Customer values "
 									+ "(?, ?, ?, ?)");
@@ -124,6 +124,7 @@ public class DataFetcher {
 			preparedStatement.setString(2, password);
 			preparedStatement.setString(3, name);
 			preparedStatement.setString(4, cartId);
+			preparedStatement.setString(5, address);
 
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {

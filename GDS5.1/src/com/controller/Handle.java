@@ -83,8 +83,11 @@ public class Handle {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		//Return statement
 		return value;
+	}
+	
+	public int createCustomer(String email, String fullname, String password) {
+		return 0;
 	}
 }

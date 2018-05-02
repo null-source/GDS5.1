@@ -42,6 +42,7 @@ td {
 	</div>
 	<center>
 		<h1>Create a new account</h1>
+		<form action="Register" method="post">
 		<table>
 			<tr>
 				<td>Full Name<br> <input type="text" name="customersName"></td>
@@ -56,8 +57,8 @@ td {
 			<tr>
 				<td><br><input type="submit" value="Register"></td>
 			</tr>
-
 		</table>
+		</form>
 	</center>
 
 </body>
