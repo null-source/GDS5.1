@@ -6,19 +6,89 @@
 <head>
 <style>
 body {
-	background-color: linen;
+	background-color: white;
 	font-family: "helvetica";
+}
+
+.topnav {
+	overflow: hidden;
+	background-color: #133251;
+}
+
+.topnav a {
+	float: left;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 14px;
+}
+
+.topnav a:hover {
+	background-color: #ddd;
+	color: black;
+}
+
+.topnav a.emp {
+	float: right;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 14px;
+}
+
+.topnav a.emp:hover {
+	background-color: #ddd;
+	color: black;
 }
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GDS - Employees</title>
 </head>
 <body>
+
+	<div class="topnav">
+		<a class="active" href="manager.jsp">Home</a> <a class="active"
+			href="#orders">Orders</a> <a class="active" href="#inventory">Inventory</a>
+		<a class="active" href="viewFiscInfo.jsp">Financial Information</a> <a
+			class="emp" href="Main.jsp">Logout</a>
+	</div>
+
 	<a href="manager.jsp">BACK</a>
 	<center>
 		<h1>
 			<i>EMPLOYEE MANAGEMENT</i>
 		</h1>
 	</center>
+	<hr width=200>
+	<br>
+	<center>
+		<img src="gds_logo.jpg" style="width: 222px; height: 107px;">
+	</center>
+
+	<center>
+	<div id="table-wrapper">
+		<div id="table-scroll">
+			<br>
+			<table>
+				<thead>
+					<tr>
+						<th><span class="Price">Employee Name</span></th>
+						<th><span class="Price">ID</span></th>
+						<th><span class="Item">Type</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Daniel Ghazvini</td>
+						<td>a004</td>
+						<td>0</td>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	</center>
+
 </body>
 </html>
