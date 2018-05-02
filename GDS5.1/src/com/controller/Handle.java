@@ -4,6 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import application.model.Customer;
+import application.model.Employee;
+import application.model.Maintainer;
+import application.model.Manager;
 
 /**
  * EmpHandle handles any requested data from the CustomerLogin controller
@@ -122,5 +125,27 @@ public class Handle {
 			e.printStackTrace();
 		}
 		return cust;
+	}
+	
+	public Employee getEmployee(String username, String password) {
+		DataFetcher data = new DataFetcher();
+		ResultSet rSet = data.fetchEmp(username, password);
+		Employee emp = null;
+		try {
+			rSet.next();
+			switch(rSet.getInt(4)) {
+			case 0:
+				emp = new Manager(rSet.getString(1), rSet.getString(2), rSet.getString(3), rSet.getInt(4));
+			case 1:
+				emp = new Maintainer(rSet.getString(1), rSet.getString(2), rSet.getString(3), rSet.getInt(4));
+			case 2:
+				emp = new Shopper(rSet.getString(1), rSet.getString(2), rSet.getString(3), rSet.getInt(4));
+			case 3:
+				emp = new DeliveryDriver(rSet.getString(1), rSet.getString(2), rSet.getString(3), rSet.getInt(4));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return emp;
 	}
 }

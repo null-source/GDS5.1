@@ -18,6 +18,13 @@ p.oneLine {
 </style>
 </head>
 <body>
+<%
+	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+
+	if(session.getAttribute("customer") == null)
+		response.sendRedirect("Main.jsp");
+
+%>
 	<i><p class="oneLine">ACCOUNT PAGE</p></i>
 	<br>
 	<a href="Main.jsp">GO TO HOMEPAGE</a>
@@ -25,7 +32,7 @@ p.oneLine {
 	<br>
 	
 	<%
-		Customer c = (Customer) session.getAttribute("user");
+		Customer c = (Customer) session.getAttribute("customer");
 		out.println("Hi <b>" + c.getFullname() +"</b>, this is your Account Page!<br><br>");
 		String address;
 		String email = c.getEmail();

@@ -87,20 +87,22 @@ td {
 <title>Manager</title>
 </head>
 <body>
-	<!-- Redirects user to EmployeeLogin.jsp if they are logged out -->
-	<%
-		//if(session.getAttribute("username") == null) {
-		//response.sendRedirect("EmployeeLogin.jsp");
-		//}
-	%>
+<%
+	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 
+	if(session.getAttribute("user") == null)
+		response.sendRedirect("Main.jsp");
+
+%>
 
 	<div class="topnav">
 		<a class="active" href="manager.jsp">Home</a> <a class="active"
 			href="#orders">Orders</a> <a class="active" href="#inventory">Inventory</a>
 		<a class="active" href="viewFiscInfo.jsp">Financial Information</a> <a
 			class="active" href="employeeManagement.jsp">Employee Management</a>
-		<a class="emp" href="Main.jsp">Logout</a>
+		<form action="Logout" method="post">
+		<a class="emp" href="Logout">Logout</a>
+		</form>
 	</div>
 
 	<center>

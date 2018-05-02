@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ page import="application.model.Employee" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -36,6 +37,21 @@ td {
 <title>Employees</title>
 </head>
 <body>
+<%
+	Employee e = (Employee) session.getAttribute("user");
+	if (e != null) {
+		switch(e.getEmpType()) {
+		case 0:
+			response.sendRedirect("manager.jsp");
+		case 1:
+			response.sendRedirect("maintainer.jsp");
+		case 2:
+			response.sendRedirect("shopper.jsp");
+		case 3:
+			response.sendRedirect("driver.jsp");
+		}
+	}
+%>
 	<div class="topnav">
 		<a class="active" href="Main.jsp">Home</a>
 	</div>

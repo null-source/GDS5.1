@@ -46,6 +46,10 @@ body {
 <title>Login</title>
 </head>
 <body>
+<%
+	if (session.getAttribute("customer") != null)
+		response.sendRedirect("customer.jsp");
+%>
 	<div class="topnav">
 		<a class="active" href="Main.jsp">Home</a> 
 	</div>

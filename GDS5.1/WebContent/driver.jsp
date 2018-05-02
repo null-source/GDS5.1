@@ -85,6 +85,13 @@ td {
 <title>Driver</title>
 </head>
 <body>
+<%
+	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+
+	if(session.getAttribute("user") == null)
+		response.sendRedirect("Main.jsp");
+
+%>
 	<div class="topnav">
 		<a class="active" href="driver.jsp">Home</a> <a class="active"
 			href="#orders">Orders</a>

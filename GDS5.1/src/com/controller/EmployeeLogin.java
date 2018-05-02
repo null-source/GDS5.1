@@ -30,7 +30,7 @@ public class EmployeeLogin extends HttpServlet {
 		} else {
 			//This is where you will recurse to the login page
 			HttpSession session = request.getSession();
-			session.setAttribute("user", username);
+			session.setAttribute("user", ch.getEmployee(username, password));
 			switch(valid) {
 			case 0:
 				response.sendRedirect("manager.jsp");

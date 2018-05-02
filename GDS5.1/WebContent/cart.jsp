@@ -87,6 +87,7 @@ td {
 <title>Your cart</title>
 </head>
 <body>
+
 	<div class="topnav">
 		<a class="active" href="Main.jsp">Home</a> <a href="">Account</a> <a
 			href="searchPage.jsp">Deals</a> <a class="checkout"
