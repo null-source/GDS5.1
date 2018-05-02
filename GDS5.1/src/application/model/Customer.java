@@ -146,7 +146,7 @@ public class Customer {
 	}
 	
 	public void payCart() {
-		this.currentOrder = new Order(cart, this);
+		this.currentOrder = new Order(cart, this.fullname);
 		this.cart = null;
 	}
 	
