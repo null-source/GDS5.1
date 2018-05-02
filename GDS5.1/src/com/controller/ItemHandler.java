@@ -44,6 +44,22 @@ public class ItemHandler {
 	}
 	
 	/**
+	 * Add a new Grocery Item to the GDS database.
+	 * @param itemId A string literal specifying the new item id 
+	 * @param name A string literal specifying the new item name
+	 * @param description A string literal specifying the item description
+	 * @param lastDt A string literal specifying the item last date
+	 * @param quantity Integer value specifying the item quantity
+	 * @param price Double value specifying the item price
+	 * @param area String literal specifying the item's area
+	 */
+	public void addGroceryItem(String itemId, String name, String description, String lastDt, 
+			int quantity, double price, String area) {
+		
+		data.insertGrocery(itemId, name, description, lastDt, quantity, price, area);
+	}
+	
+	/**
 	 * Updates an existing item in the GDS database.
 	 * @param oldItemId A string literal representing the item's old Id
 	 * @param newItemId A string literal specifying the item's new Id
@@ -86,4 +102,6 @@ public class ItemHandler {
 		}
 		return item;
 	}
+	
+	
 }

@@ -23,6 +23,12 @@ public class CartHandle {
 		resultSet = null;
 	}
 	
+	/**
+	 * Returns an arraylist of grocery items from the specified shopping cart
+	 * @param cartId String literal specifying this carts id
+	 * @return An arraylist of grocery items
+	 * @throws SQLException
+	 */
 	public ArrayList<Grocery> getCart(String cartId) throws SQLException{
 		resultSet = data.fetchCart(cartId);
 		ArrayList<Grocery> cartItems = new ArrayList<Grocery>();
@@ -42,4 +48,29 @@ public class CartHandle {
 		}
 		return cartItems;
 	}
+	
+	
+	
+	/**
+	 * Returns and removes a specified item from a specified cart.
+	 * @param cartId String literal specifying the cartId
+	 * @param itemId String literal specifying the itemId
+	 * @return Grocery item object
+	 * @throws SQLException
+	 */
+	public Grocery removeCartItem(String cartId, String itemId) throws SQLException {
+		resultSet = data.fetchGroceryItem(itemId);
+		String name = resultSet.getString("name");
+		String description = resultSet.getString("description");
+		Date lastDt = resultSet.getDate("lastDt");
+		double price = resultSet.getDouble("price");
+		String area = resultSet.getString("area");
+		resultSet = data.fetchCartItem(cartId, itemId);
+		int quantity = resultSet.getInt("quantity");
+		data.removeCartItem(cartId, itemId);
+		
+		return new Grocery(itemId, name, description, price, quantity, lastDt, area);
+	}
+	
+	
 }

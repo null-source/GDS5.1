@@ -35,7 +35,9 @@ public class Grocery {
 		this(itemId, name, desc, price, quantity, lastDt, area, 0);
 	}
 
-	public Grocery() {
+	public Grocery(String name, int quantity) {
+		this.name = name;
+		this.quantity = quantity;
 	}
 	public double getPrice() {
 		return price;

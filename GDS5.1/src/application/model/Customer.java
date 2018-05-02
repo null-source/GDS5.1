@@ -17,7 +17,7 @@ public class Customer {
 	}
 
 	private ArrayList<Grocery> cart;
-	private Order order;
+	private Order currentOrder;
 	private String paymentInfo;
 	private String deliveryInfo;
 	
@@ -135,6 +135,19 @@ public class Customer {
 			counter++;
 		}
 	return -1;
+	}
+
+	public Order getCurrentOrder() {
+		return currentOrder;
+	}
+
+	public void setCurrentOrder(Order order) {
+		this.currentOrder = order;
+	}
+	
+	public void payCart() {
+		this.currentOrder = new Order(cart, this);
+		this.cart = null;
 	}
 	
 	
