@@ -86,12 +86,11 @@ td {
 </head>
 <body>
 	<div class="topnav">
-		<a class="active" href="driver.jsp">Home</a> <a class="active"
+		<a class="active" href="Main.jsp">Home</a> <a class="active"
 			href="#orders">Orders</a>
 		<a class ="active" href="currentOrderDriver.jsp">Current Order</a>
 			<a class="active" id="clock" onclick="getElementById('clock').innerHTML=Date()">Clock in/out</a>
 		<a class="active" href="viewFiscInfo.jsp">
-		<a class="emp" href="Main.jsp">Logout</a>
 	</div>
 	<center>
 		<h1>
