@@ -1,6 +1,9 @@
 package com.controller;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import application.model.Customer;
 
 /**
  * EmpHandle handles any requested data from the CustomerLogin controller
@@ -88,6 +91,36 @@ public class Handle {
 	}
 	
 	public int createCustomer(String email, String fullname, String password) {
-		return 0;
+		Customer cust = new Customer(email, fullname, password);
+		cust.setCartId(null);
+		cust.setDeliveryInfo(null);
+		int exist = userExist(cust.getEmail(), cust.getPassword(), 1);
+		int ret = 0;
+		
+		switch (exist) {
+		case -2:
+			DataFetcher data = new DataFetcher();
+			data.insertCustomer(cust);
+			ret = 0;
+			break;
+		default:
+			ret = -1;
+		}
+		return ret;
+	}
+	
+	public Customer getCustomer(String email, String password) {
+		DataFetcher data = new DataFetcher();
+		ResultSet rSet = data.fetchCustomer(email, password);
+		Customer cust = null;
+		try {
+			rSet.next();
+			cust = new Customer(rSet.getString(1), rSet.getString(2), rSet.getString(3));
+			cust.setCartId(rSet.getString(4));
+			cust.setDeliveryInfo(rSet.getString(5));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return cust;
 	}
 }

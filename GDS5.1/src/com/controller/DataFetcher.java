@@ -6,6 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import application.model.Customer;
+
 import java.sql.Date;
 
 public class DataFetcher {
@@ -116,16 +119,15 @@ public class DataFetcher {
 	 * @param name A string literal specifying the new Customer's name
 	 * @param cartId A string literal specifying the new Customer's cartId
 	 */
-	public void insertCustomer(String email, String password, String name, String cartId, String address) {
+	public void insertCustomer(Customer c) {
 		try {
-			preparedStatement = connect.prepareStatement("insert into Customer values "
-									+ "(?, ?, ?, ?)");
-			preparedStatement.setString(1, email);
-			preparedStatement.setString(2, password);
-			preparedStatement.setString(3, name);
-			preparedStatement.setString(4, cartId);
-			preparedStatement.setString(5, address);
-
+			preparedStatement = connect.prepareStatement("insert into gds3.Customer values "
+									+ "(?, ?, ?, ?, ?)");
+			preparedStatement.setString(1, c.getEmail());
+			preparedStatement.setString(2, c.getPassword());
+			preparedStatement.setString(3, c.getFullname());
+			preparedStatement.setString(4, c.getCartId());
+			preparedStatement.setString(5, c.getDeliveryInfo());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -134,23 +136,24 @@ public class DataFetcher {
 	
 	/**
 	 * Updates an existing Customer located in the Customer table (located by email).
-	 * @param email A string literal specifying the Customer's email
-	 * @param email A string literal specifying the new Customer's email
-	 * @param password A string literal specifying the new Customer's password
-	 * @param name A string literal specifying the new Customer's name
-	 * @param cartId A string literal specifying the new Customer's cartId
+	 * @param oldEmail A string literal specifying the Customer's email
+	 * @param newEmail A string literal specifying the new Customer's email
+	 * @param newPassword A string literal specifying the new Customer's password
+	 * @param newName A string literal specifying the new Customer's name
+	 * @param newCartId A string literal specifying the new Customer's cartId
+	 * @param newAddress
 	 */
 	public void updateCustomer(String oldEmail, String newEmail, String newPassword, 
-								String newName, String newCartId) {
+								String newName, String newCartId, String newAddress) {
 		try {
 			preparedStatement = connect.prepareStatement("update Customer set email = ?, "
-									+ "passwd = ?, name = ?, cartId = ? where email = ?");
+									+ "passwd = ?, name = ?, cartId = ?, address = ? where email = ?");
 			preparedStatement.setString(1, newEmail);
 			preparedStatement.setString(2, newPassword);
 			preparedStatement.setString(3, newName);
 			preparedStatement.setString(4, newCartId);
 			preparedStatement.setString(5, oldEmail);
-			
+			preparedStatement.setString(6, newAddress);
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -175,6 +178,28 @@ public class DataFetcher {
 			e.printStackTrace();
 		}
 		return resultSet;
+	}
+	
+	/**
+	 * Inserts a new cart item into the GDS database.
+	 * @param cartId A string literal specifying the new cartId
+	 * @param email A string literal specifying the email address
+	 * @param itemId A string literal specifying item id
+	 * @param quantity Integer value specifying the quantity of the item
+	 */
+	public void insertCart(String cartId, String email, String itemId, int quantity) {
+		try {
+			preparedStatement = connect.prepareStatement("insert into Carts values "
+									+ "(?, ?, ?, ?)");
+			preparedStatement.setString(1, cartId);
+			preparedStatement.setString(2, email);
+			preparedStatement.setString(3, itemId);
+			preparedStatement.setInt(4, quantity);
+
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**

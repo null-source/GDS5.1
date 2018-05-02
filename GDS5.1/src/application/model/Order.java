@@ -5,7 +5,7 @@ public class Order {
 
 	private String status;
 	private Customer customer; //shopping cart will be within customer
-	private String shoppingCartID;
+	private String orderId;
 	
 	public Order() {
 		
