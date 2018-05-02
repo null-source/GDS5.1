@@ -5,12 +5,8 @@
 <head>
 <style>
 body {
-	background-color: "white"";
-}
-
-td {
-	text-align: center;
-	vertical-align: middle;
+	background-color: white;
+	font-family: "helvetica";
 }
 
 .topnav {
@@ -28,6 +24,20 @@ td {
 }
 
 .topnav a:hover {
+	background-color: #ddd;
+	color: black;
+}
+
+.topnav a.emp {
+	float: right;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 14px;
+}
+
+.topnav a.emp:hover {
 	background-color: #ddd;
 	color: black;
 }

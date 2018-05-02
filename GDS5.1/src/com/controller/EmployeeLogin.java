@@ -21,8 +21,8 @@ public class EmployeeLogin extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		EmpHandle ch = new EmpHandle();
-		int valid = ch.empExist(username, password, 0);
+		Handle ch = new Handle();
+		int valid = ch.userExist(username, password, 0);
 		
 		if (valid < 0) {
 			//This is where you will navigate to a employee view page
